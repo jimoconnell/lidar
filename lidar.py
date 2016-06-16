@@ -1,6 +1,9 @@
 import time
 import serial
+import paho.mqtt.client as mqtt
 
+mqttc = mqtt.Client("python_pub")
+mqttc.connect("mqtt.gasnet.io", 1883)
 # configure the serial connections (the parameters differs on the device you are connecting to)
 
 ser = serial.Serial(
@@ -30,4 +33,11 @@ while 1 :
 			
 		if out != '':
 			print "" + out
-
+		if out != 'D' and out != '' and 'Er' not in out:
+			a,b = out.split(",")	
+			a = a.translate(None,":")
+			a = a.translate(None,"m")
+			a = a.translate(None,"D")
+			inches = float(a) / .3048 % 1 * 12
+			#mqttc.publish("gasnet/lidar", inches)
+			mqttc.publish("gasnet/lidar", a)
