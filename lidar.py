@@ -18,9 +18,10 @@ ser.isOpen()
 print 'Starting Lidar'
 input=1
 while 1 :
+		#Take a reading every one second:
 		time.sleep(1)
 		# send the character to the device
-		# (note that I happend a \r\n carriage return and line feed to the characters - this is requested by my device)
+		# Sending "D" to the device will hopefully tell it to take a measurement and return the value. (\r\n\ is added to send)
 		ser.write('D\r\n')
 		out = ''
 		# let's wait one second before reading output (let's give device time to answer)
