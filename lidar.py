@@ -18,11 +18,11 @@ ser = serial.Serial(
 ser.isOpen()
 
 #print 'Enter your commands below.\r\nInsert "exit" to leave the application.'
-print 'Starting Lidar'
+print 'Starting Lidar\nReadings in meters.\n'
 input=1
 while 1 :
 		#Take a reading every one second:
-		time.sleep(1)
+		time.sleep(5)
 		# send the character to the device
 		# Sending "D" to the device will hopefully tell it to take a measurement and return the value. (\r\n\ is added to send)
 		ser.write('D\r\n')
