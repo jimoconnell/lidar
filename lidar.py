@@ -5,7 +5,7 @@ import paho.mqtt.client as mqtt
 mqttc = mqtt.Client("python_pub")
 mqttc.connect("mqtt.gasnet.io", 1883)
 # configure the serial connections (the parameters differs on the device you are connecting to)
-
+#Comment
 ser = serial.Serial(
 	port='/dev/ttyUSB0',
 	baudrate=19200,
