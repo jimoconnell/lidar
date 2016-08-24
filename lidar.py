@@ -3,7 +3,7 @@ import serial
 import paho.mqtt.client as mqtt
 
 mqttc = mqtt.Client("python_pub")
-mqttc.connect("mqtt.gasnet.io", 1883)
+mqttc.connect("iot.eclipse.org", 1883)
 # configure the serial connections (the parameters differs on the device you are connecting to)
 #Comment)
 ser = serial.Serial(
@@ -39,5 +39,5 @@ while 1 :
 			a = a.translate(None,"m")
 			a = a.translate(None,"D")
 			inches = float(a) / .3048 % 1 * 12
-			#mqttc.publish("gasnet/lidar", inches)
-			mqttc.publish("gasnet/lidar", a)
+			#mqttc.publish("mysensor/lidar", inches)
+			mqttc.publish("mysensor/lidar", a)
