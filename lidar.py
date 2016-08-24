@@ -5,19 +5,19 @@ import paho.mqtt.client as mqtt
 mqttc = mqtt.Client("python_pub")
 mqttc.connect("iot.eclipse.org", 1883)
 # configure the serial connections (the parameters differs on the device you are connecting to)
-#Comment)
+# Comment)
 ser = serial.Serial(
-	port='/dev/ttyUSB0',
-	baudrate=19200,
-	parity=serial.PARITY_ODD,
-	stopbits=serial.STOPBITS_ONE,
-	bytesize=serial.EIGHTBITS
+    port='/dev/ttyUSB0',
+    baudrate=19200,
+    parity=serial.PARITY_ODD,
+    stopbits=serial.STOPBITS_ONE,
+    bytesize=serial.EIGHTBITS
 )
 
 # ser.open()
 ser.isOpen()
 
-#print 'Enter your commands below.\r\nInsert "exit" to leave the application.'
+# print 'Enter your commands below.\r\nInsert "exit" to leave the application.'
 print 'Starting Lidar\nReadings in meters.\n'
 input=1
 while 1 :
