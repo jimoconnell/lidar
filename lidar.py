@@ -4,8 +4,7 @@ import paho.mqtt.client as mqtt
 
 mqttc = mqtt.Client("python_pub")
 mqttc.connect("mqtt.gasnet.io", 1883)
-# configure the serial connections (the parameters differs on the device you are connecting to)
-# Comment)
+# configure the serial connections for the Lidar board
 ser = serial.Serial(
     port='/dev/ttyUSB0',
     baudrate=19200,
@@ -17,14 +16,13 @@ ser = serial.Serial(
 # ser.open()
 ser.isOpen()
 
-# print 'Enter your commands below.\r\nInsert "exit" to leave the application.'
-print 'Starting Lidar\nReadings in meters.\n'
-input = 1
+print 'Starting Lidar.\nReadings in meters.\n'
+#input = 1
 while 1:
     # Take a reading every one second:
     time.sleep(5)
     # send the character to the device
-    # Sending "D" to the device will hopefully tell it to take a measurement and return the value. (\r\n\ is added to send)
+    # Sending "D" to the device will tell it to take a measurement and return the value. (\r\n\ is added to send)
     ser.write('D\r\n')
     out = ''
     # let's wait one second before reading output (let's give device time to answer)
