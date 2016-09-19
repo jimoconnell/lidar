@@ -19,25 +19,25 @@ ser.isOpen()
 
 # print 'Enter your commands below.\r\nInsert "exit" to leave the application.'
 print 'Starting Lidar\nReadings in meters.\n'
-input=1
-while 1 :
-		#Take a reading every one second:
-		time.sleep(5)
-		# send the character to the device
-		# Sending "D" to the device will hopefully tell it to take a measurement and return the value. (\r\n\ is added to send)
-		ser.write('D\r\n')
-		out = ''
-		# let's wait one second before reading output (let's give device time to answer)
-		while ser.inWaiting() > 0:
-			out += ser.read(1)
-			
-		if out != '':
-			print "" + out
-		if out != 'D' and out != '' and 'Er' not in out:
-			a,b = out.split(",")	
-			a = a.translate(None,":")
-			a = a.translate(None,"m")
-			a = a.translate(None,"D")
-			inches = float(a) / .3048 % 1 * 12
-			#mqttc.publish("mysensor/lidar", inches)
-			mqttc.publish("mysensor/lidar", a)
+input = 1
+while 1:
+    # Take a reading every one second:
+    time.sleep(5)
+    # send the character to the device
+    # Sending "D" to the device will tell it to take a measurement and return the value. (\r\n\ is added to send)
+    ser.write('D\r\n')
+    out = ''
+    # let's wait one second before reading output (let's give device time to answer)
+    while ser.inWaiting() > 0:
+        out += ser.read(1)
+
+    if out != '':
+        print "" + out
+    if out != 'D' and out != '' and 'Er' not in out:
+        a, b = out.split(",")
+        a = a.translate(None, ":")
+        a = a.translate(None, "m")
+        a = a.translate(None, "D")
+        inches = float(a) / .3048 % 1 * 12
+        # mqttc.publish("mysensor/lidar", inches)
+        mqttc.publish("mysensor/lidar", a)
